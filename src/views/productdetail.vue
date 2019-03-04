@@ -1,23 +1,22 @@
 <template>
 
 <div>
-  <b-card no-body class="overflow-hidden" style="max-width: 940px; border: none;">
-    <b-row no-gutters>
-      <b-col md="6">
-        <b-card-img src="http://localhost:8080/product/image/19" class="rounded-0" />
-      </b-col>
-      <b-col md="6">
-        <b-card-body >
-          <b-card-text>
-            <div style ="font-size:30;font-weight:700;"> {{productName}}</div>
-            <div style="font-size: 24px;font-weight:700;color:#ff5722; margin-top:10px;">Rp.{{productPrice}}</div>
-            <div style="margin-top:10px;font-size:24;font-weight:700;">Product Detail</div>
-            <div style="margin-top:10px;">{{productDescription}}</div>
-          </b-card-text>
-        </b-card-body>
-      </b-col>
-    </b-row>
-  </b-card>
+
+<div class="card" style="max-width: 940px; border: none;">
+     <div class="row no-gutters">
+         <div class="col-auto">
+             <img :src="getPic()"  width="550" height="450"  class="img-fluid" alt="">
+         </div>
+         <div class="col">
+             <div class="card-block px-2">
+                 <h4 class="card-title">{{productName}}</h4>
+                  <p class="card-text" style="font-size: 12pt;font-weight:700;color:#ff5722;">{{ productPrice }}</p>
+                 <p class="card-text">{{productDescription}}</p>
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
 </div>
 
 </template>
@@ -30,10 +29,17 @@
       title:"details",
       productName:this.$route.params.Pid.productName,
       productDescription:this.$route.params.Pid.productDesc,
-      productPrice:this.$route.params.Pid.productPrice,
-      productImage:this.$route.params.Pid.urlImage,
+      productPrice: "Rp."+this.$route.params.Pid.productPrice,
       productImage: this.globalVar+"/product/image/"+this.$route.params.Pid.productId
    }
-  }
+  },
+
+  methods:{
+    getPic() {
+         return this.globalVar+"/product/image/"+this.$route.params.Pid.productId;
+       }
+
+    }
+
  }
 </script>
